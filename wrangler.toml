@@ -1,0 +1,27 @@
+name = "chathub"
+main = "src/index.ts"
+compatibility_date = "2024-09-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+JWT_SECRET = ""  # Set via `wrangler secret put JWT_SECRET` in each environment
+
+[build]
+command = "npm run build"
+functions = "functions"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "chathub-db"
+database_id = ""  # Filled after creating the D1 database
+
+[[r2_buckets]]
+binding = "BUCKET"
+bucket_name = "chathub-assets"
+
+[[durable_objects]]
+binding = "CHAT_DO"
+class_name = "ChatDurableObject"
+
+[env.production]
+# No additional vars needed; secrets are managed separately
